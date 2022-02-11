@@ -1,0 +1,44 @@
+#opt-1{
+    position: absolute;
+    right: 100;
+}
+
+#rgb{
+    color: white
+}
+
+.headerBlock{
+    font-size: 25px;
+    background-color: rgb(31, 94, 94);
+    text-align: center;
+    color: antiquewhite;
+}
+
+#canvases{
+    position: relative;
+}
+
+.btn{
+    background-color: transparent;
+    border: 0;
+    color: antiquewhite;
+    cursor: pointer;
+}
+
+.option-btn{
+    position: absolute;
+    border: 0;
+    color: transparent;
+    cursor: pointer;
+    top: 20px;
+    background-color: transparent;
+}
+
+.option-btn-hard{
+    position: absolute;
+    border: 0;
+    color: transparent;
+    cursor: pointer;
+    top:145px;
+    background-color: transparent;
+}
