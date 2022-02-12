@@ -50,48 +50,32 @@ function buildPallete(mode, correctRGB)
 {
     if(mode === 'easy')
     {
-        let ctx = Canvas.getContext("2d");
         right = (Math.floor(Math.random()*100))%3;
-        for(let i = -1; i <= 1; i++){ // make boxes
-            if(i + 1 === right){
-                ctx.fillStyle = `rgb(${correctRGB[0]},${correctRGB[1]},${correctRGB[2]})`;
-                ctx.fillRect(topLeftx + i*space, topLefty, boxSize, boxSize);
+        for(let i = 0; i < 3; i++)
+        {
+            if(i === right)
+            {
+                opts[i].style.backgroundColor = `rgb(${correctRGB[0]}, ${correctRGB[1]}, ${correctRGB[2]})`;
             } else {
-                let rgbn = new_rgb();
-                ctx.fillStyle = `rgb(${rgbn[0]},${rgbn[1]},${rgbn[2]})`;
-                ctx.fillRect(topLeftx + i*space, topLefty, boxSize, boxSize);
+                let nrgb = new_rgb();
+                opts[i].style.backgroundColor = `rgb(${nrgb[0]}, ${nrgb[1]}, ${nrgb[2]})`;
             }
         }
-        for(let i = -1; i <= 1; i++){ // clear boxes below
-            let rgbn = new_rgb();
-            ctx.fillStyle = 'rgb(255,255,255)';
-            ctx.fillRect(topLeftx + i*space - 2, topLefty + vspace, boxSize + 5, boxSize + 5); // white boxes with an offset
-            }
+        for(let i = 3; i < 6; i++)
+        {
+            opts[i].style.backgroundColor = 'transparent';
+        }
     } else if (mode === 'hard') {
-        let ctx = Canvas.getContext("2d");
         right = (Math.floor(Math.random()*100))%6;
-        let count = 0;
-        for(let i = -1; i <= 1; i++){
-            if(count === right){
-                ctx.fillStyle = `rgb(${correctRGB[0]},${correctRGB[1]},${correctRGB[2]})`;
-                ctx.fillRect(topLeftx + i*space, topLefty, boxSize, boxSize);
+        for(let i = 0; i < 6; i++)
+        {
+            if(i === right)
+            {
+                opts[i].style.backgroundColor = `rgb(${correctRGB[0]}, ${correctRGB[1]}, ${correctRGB[2]})`;
             } else {
-                let rgbn = new_rgb();
-                ctx.fillStyle = `rgb(${rgbn[0]},${rgbn[1]},${rgbn[2]})`;
-                ctx.fillRect(topLeftx + i*space, topLefty, boxSize, boxSize);
+                let nrgb = new_rgb();
+                opts[i].style.backgroundColor = `rgb(${nrgb[0]}, ${nrgb[1]}, ${nrgb[2]})`;
             }
-            count++;
-        }
-        for(let i = -1; i <= 1; i++){
-            if(count === right){
-                ctx.fillStyle = `rgb(${correctRGB[0]},${correctRGB[1]},${correctRGB[2]})`;
-                ctx.fillRect(topLeftx + i*space, topLefty + vspace, boxSize, boxSize);
-            } else {
-                let rgbn = new_rgb();
-                ctx.fillStyle = `rgb(${rgbn[0]},${rgbn[1]},${rgbn[2]})`;
-                ctx.fillRect(topLeftx + i*space, topLefty + vspace, boxSize, boxSize);
-            }
-            count++;
         }                                                       
     }
 }
@@ -99,7 +83,6 @@ function buildPallete(mode, correctRGB)
 for(let i = 1; i <= 3; i++)
 {
     const but = document.getElementById(`opt-${i}`);
-    // but.style.top = `$`
     but.style.left = `${topLeftx + (i-2) * (space) - 2}px`;
     but.style.height = `${boxSize + 4}px`;
     but.style.width = `${boxSize + 4}px`;
@@ -107,7 +90,6 @@ for(let i = 1; i <= 3; i++)
 for(let i = 1; i <= 3; i++)
 {
     const but = document.getElementById(`opt-${i+3}`);
-    // but.style.top = `$`
     but.style.left = `${topLeftx + (i-2) * (space) - 2}px`;
     but.style.height = `${boxSize + 4}px`;
     but.style.width = `${boxSize + 4}px`;
@@ -133,10 +115,6 @@ resetButton.addEventListener("click", () => {
 
     tryagain.innerHTML = '';
 
-    for(let i = 0; i < 6; i++)
-    {
-        opts[i].style.backgroundColor = 'transparent'; // reset boxes
-    }
     header.style.backgroundColor = 'rgb(31, 94, 94)'; // reset banner
 
     resetButton.innerHTML = 'Reset Colours';
@@ -162,7 +140,7 @@ for(let i = 0; i < 6; i++) // final checking logic
         if(i === right){
             tryagain.innerHTML = 'Correct!';
             normalise(RGBC);
-            resetButton.innerHTML = 'Play again!'
+            resetButton.innerHTML = 'Play again!';
         } else {
             opts[i].style.backgroundColor = 'white';
             tryagain.innerHTML = 'Try again';
