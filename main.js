@@ -141,6 +141,8 @@ for(let i = 0; i < 6; i++) // final checking logic
             tryagain.innerHTML = 'Correct!';
             normalise(RGBC);
             resetButton.innerHTML = 'Play again!';
+        } else if (resetButton.innerHTML === 'Play again!') {
+            ;
         } else {
             opts[i].style.backgroundColor = 'white';
             tryagain.innerHTML = 'Try again';
