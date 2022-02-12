@@ -9,6 +9,8 @@
 
 #try-again{
     font-size:19px;
+    padding-left: 25px;
+    padding-right: 25px;
 }
 
 .headerBlock{
@@ -43,7 +45,7 @@
 }
 
 .option-btn:active{
-    transform: translateY(4px);
+    transform: translateY(5px);
 }
 
 .option-btn-hard{
