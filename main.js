@@ -97,6 +97,8 @@ for(let i = 1; i <= 3; i++)
 
 let RGBC = new_rgb(); // init target
 let umode = 'easy';
+easyButton.style.backgroundColor = 'white';
+easyButton.style.color = 'black';
 
 rgbElement.innerHTML = `rgb(${RGBC[0]},${RGBC[1]},${RGBC[2]})`;
 
@@ -126,11 +128,19 @@ resetButton.addEventListener("click", () => {
 
 easyButton.addEventListener("click", () => {
     umode = 'easy';
+    easyButton.style.backgroundColor = 'white';
+    easyButton.style.color = 'black';
+    hardButton.style.backgroundColor = 'transparent';
+    hardButton.style.color = 'antiquewhite';
     resetButton.click()
 })
 
 hardButton.addEventListener("click", () => {
     umode = 'hard';
+    hardButton.style.backgroundColor = 'white';
+    hardButton.style.color = 'black';
+    easyButton.style.backgroundColor = 'transparent';
+    easyButton.style.color = 'antiquewhite';
     resetButton.click()
 })
 
