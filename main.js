@@ -146,15 +146,17 @@ hardButton.addEventListener("click", () => {
 for(let i = 0; i < 6; i++) // final checking logic
 {
     opts[i].addEventListener("click", () => {
-        if(i === right){
-            tryagain.innerHTML = 'Correct!';
-            normalise(RGBC);
-            resetButton.innerHTML = 'Play again!';
-        } else if (resetButton.innerHTML === 'Play again!') {
-            ;
-        } else {
-            opts[i].style.backgroundColor = 'white';
-            tryagain.innerHTML = 'Try again';
+        if( (umode === 'easy' && i < 3) || umode === 'hard'){
+            if(i === right){
+                tryagain.innerHTML = 'Correct!';
+                normalise(RGBC);
+                resetButton.innerHTML = 'Play again!';
+            } else if (resetButton.innerHTML === 'Play again!') {
+                ;
+            } else {
+                opts[i].style.backgroundColor = 'transparent';
+                tryagain.innerHTML = 'Try again';
+            }
         }
     })
 }

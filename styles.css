@@ -7,10 +7,19 @@
     color: white
 }
 
+#main-head{
+    max-width: auto;
+    margin: auto;
+}
+
 #try-again{
     font-size:19px;
     padding-left: 25px;
     padding-right: 25px;
+}
+
+#container{
+    background-color: white;
 }
 
 .headerBlock{
@@ -20,8 +29,9 @@
     color: antiquewhite;
 }
 
-#canvases{
+#buttons{
     position: relative;
+    margin: auto;
 }
 
 .btn{
