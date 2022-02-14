@@ -7,10 +7,19 @@
     color: white
 }
 
+#main-head{
+    max-width: auto;
+    margin: auto;
+}
+
 #try-again{
     font-size:19px;
     padding-left: 25px;
     padding-right: 25px;
+}
+
+#container{
+    background-color: white;
 }
 
 .headerBlock{
@@ -20,8 +29,9 @@
     color: antiquewhite;
 }
 
-#canvases{
+#buttons{
     position: relative;
+    margin: auto;
 }
 
 .btn{
@@ -42,19 +52,15 @@
     cursor: pointer;
     top: 20px;
     background-color: transparent;
+    border-radius: 12px;
 }
 
 .option-btn:active{
     transform: translateY(5px);
 }
 
-.option-btn-hard{
-    position: absolute;
-    border: 0;
-    color: transparent;
-    cursor: pointer;
-    top:145px;
-    background-color: transparent;
+.hard{
+    top:135px;
 }
 
 .option-btn-hard:active{
