@@ -16,8 +16,7 @@ for(let i = 1; i <= 6; i++) // creating button instances for pallete
 const topLeftx = document.documentElement.clientWidth/2.5;
 const topLefty = 20;
 const boxSize = 100;
-const space = 150;
-const vspace = 125;
+const space = 120;
 let right;
 
 const new_rgb = () => {
@@ -128,7 +127,7 @@ resetButton.addEventListener("click", () => {
 
 easyButton.addEventListener("click", () => {
     umode = 'easy';
-    easyButton.style.backgroundColor = 'white';
+    easyButton.style.backgroundColor = 'white'; // highlighting game mode
     easyButton.style.color = 'black';
     hardButton.style.backgroundColor = 'transparent';
     hardButton.style.color = 'antiquewhite';
@@ -137,7 +136,7 @@ easyButton.addEventListener("click", () => {
 
 hardButton.addEventListener("click", () => {
     umode = 'hard';
-    hardButton.style.backgroundColor = 'white';
+    hardButton.style.backgroundColor = 'white'; // highlighting game mode
     hardButton.style.color = 'black';
     easyButton.style.backgroundColor = 'transparent';
     easyButton.style.color = 'antiquewhite';
