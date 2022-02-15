@@ -87,16 +87,16 @@ function game_mode_legend()
     resetButton.click()
 }
 
-function normalise(colour) // when called, makes everything the colour
+function normalise(colour, mode) // when called, makes everything the colour
 {
     let count;
     
     header.style.backgroundColor = `rgb(${colour[0]},${colour[1]},${colour[2]})`;
 
-    if(umode === 'easy' || umode === 'medium')
+    if(mode === 'easy' || mode === 'medium')
     {
         count = 3;
-    } else if (umode === 'hard') {
+    } else if (mode === 'hard' || mode === 'legend') {
         count = 6;
     }
     for(let i = 0; i < count; i++)
@@ -226,7 +226,7 @@ for(let i = 0; i < 6; i++) // final checking logic
         if( ( (umode === 'easy' || umode === 'medium') && i < 3) || ( umode === 'hard' || umode === 'legend' ) ){
             if(i === right){
                 tryagain.innerHTML = 'Correct!';
-                normalise(RGBC);
+                normalise(RGBC, umode);
                 resetButton.innerHTML = 'Play again!';
             } else if (resetButton.innerHTML === 'Play again!') {
                 ;
