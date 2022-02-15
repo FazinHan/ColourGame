@@ -5,6 +5,7 @@ const rgbElement = document.getElementById("rgb");
 const easyButton = document.getElementById("btn-easy");
 const mediumButton = document.getElementById("btn-medium");
 const hardButton = document.getElementById("btn-hard");
+const legendButton = document.getElementById("btn-legend");
 const Canvas = document.getElementById("canvas");
 
 const opts = [];
@@ -39,6 +40,8 @@ function game_mode_easy()
     hardButton.style.color = 'antiquewhite';
     mediumButton.style.backgroundColor = 'transparent';
     mediumButton.style.color = 'antiquewhite';
+    legendButton.style.backgroundColor = 'transparent';
+    legendButton.style.color = 'antiquewhite';
     resetButton.click()
 }
 
@@ -51,6 +54,8 @@ function game_mode_hard()
     easyButton.style.color = 'antiquewhite';
     mediumButton.style.backgroundColor = 'transparent';
     mediumButton.style.color = 'antiquewhite';
+    legendButton.style.backgroundColor = 'transparent';
+    legendButton.style.color = 'antiquewhite';
     resetButton.click()
 }
 
@@ -63,6 +68,22 @@ function game_mode_medium()
     easyButton.style.color = 'antiquewhite';
     mediumButton.style.backgroundColor = 'white';
     mediumButton.style.color = 'black';
+    legendButton.style.backgroundColor = 'transparent';
+    legendButton.style.color = 'antiquewhite';
+    resetButton.click()
+}
+
+function game_mode_legend()
+{
+    umode = 'legendary';
+    hardButton.style.backgroundColor = 'transparent'; // highlighting game mode
+    hardButton.style.color = 'antiquewhite';
+    easyButton.style.backgroundColor = 'transparent';
+    easyButton.style.color = 'antiquewhite';
+    mediumButton.style.backgroundColor = 'transparent';
+    mediumButton.style.color = 'antiquewhite';
+    legendButton.style.backgroundColor = 'white';
+    legendButton.style.color = 'black';
     resetButton.click()
 }
 
