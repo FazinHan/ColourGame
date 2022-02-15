@@ -75,7 +75,7 @@ function game_mode_medium()
 
 function game_mode_legend()
 {
-    umode = 'legendary';
+    umode = 'legend';
     hardButton.style.backgroundColor = 'transparent'; // highlighting game mode
     hardButton.style.color = 'antiquewhite';
     easyButton.style.backgroundColor = 'transparent';
@@ -107,7 +107,7 @@ function normalise(colour) // when called, makes everything the colour
 
 function buildPallete(mode, correctRGB)
 {
-    if(mode === 'easy' || umode === 'medium')
+    if(mode === 'easy' || mode === 'medium')
     {
         right = (Math.floor(Math.random()*100))%3;
         for(let i = 0; i < 3; i++)
@@ -117,11 +117,11 @@ function buildPallete(mode, correctRGB)
                 opts[i].style.backgroundColor = `rgb(${correctRGB[0]}, ${correctRGB[1]}, ${correctRGB[2]})`;
             } else {
                 let nrgb = new_rgb();
-                if(umode === 'medium'){
-                    let uncommon = Math.floor(Math.random()*10)%3;
+                if(mode === 'medium'){
+                    const common = Math.floor(Math.random()*10)%3;
                     for(let i = 0; i < 3; i++)
                     {
-                        if(i !== uncommon)
+                        if(i !== common)
                         {
                             nrgb[i] = correctRGB[i];
                         }
@@ -134,8 +134,18 @@ function buildPallete(mode, correctRGB)
         {
             opts[i].style.backgroundColor = 'transparent';
         }
-    } else if (mode === 'hard') {
+    } else if (mode === 'hard' || mode === 'legend') {
         right = (Math.floor(Math.random()*100))%6;
+        if(mode === 'medium'){
+            const uncommon = Math.floor(Math.random()*10)%6;
+            for(let i = 0; i < 6; i++)
+            {
+                if(i === uncommon)
+                {
+                    nrgb[i] = correctRGB[i];
+                }
+            }
+        }
         for(let i = 0; i < 6; i++)
         {
             if(i === right)
@@ -206,10 +216,14 @@ hardButton.addEventListener("click", () => {
     game_mode_hard();
 })
 
+legendButton.addEventListener("click", () => {
+    game_mode_legend();
+})
+
 for(let i = 0; i < 6; i++) // final checking logic
 {
     opts[i].addEventListener("click", () => {
-        if( ( (umode === 'easy' || umode === 'medium') && i < 3) || umode === 'hard'){
+        if( ( (umode === 'easy' || umode === 'medium') && i < 3) || ( umode === 'hard' || umode === 'legend' ) ){
             if(i === right){
                 tryagain.innerHTML = 'Correct!';
                 normalise(RGBC);
