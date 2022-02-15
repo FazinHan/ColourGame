@@ -93,10 +93,10 @@ function normalise(colour, mode) // when called, makes everything the colour
     
     header.style.backgroundColor = `rgb(${colour[0]},${colour[1]},${colour[2]})`;
 
-    if(mode === 'easy' || mode === 'medium')
+    if(mode === 'easy' || mode === 'legend')
     {
         count = 3;
-    } else if (mode === 'hard' || mode === 'legend') {
+    } else if (mode === 'hard' || mode === 'medium') {
         count = 6;
     }
     for(let i = 0; i < count; i++)
@@ -107,17 +107,27 @@ function normalise(colour, mode) // when called, makes everything the colour
 
 function buildPallete(mode, correctRGB)
 {
-    if(mode === 'easy' || mode === 'medium')
+    if(mode === 'easy' || mode === 'legend')
     {
         right = (Math.floor(Math.random()*100))%3;
         for(let i = 0; i < 3; i++)
         {
+            if(mode === 'legend'){
+                const uncommon = Math.floor(Math.random()*10)%3;
+                for(let i = 0; i < 3; i++)
+                {
+                    if(i === uncommon)
+                    {
+                        nrgb[i] = correctRGB[i];
+                    }
+                }
+            }
             if(i === right)
             {
                 opts[i].style.backgroundColor = `rgb(${correctRGB[0]}, ${correctRGB[1]}, ${correctRGB[2]})`;
             } else {
                 let nrgb = new_rgb();
-                if(mode === 'medium'){
+                if(mode === 'legend'){
                     const common = Math.floor(Math.random()*10)%3;
                     for(let i = 0; i < 3; i++)
                     {
@@ -134,18 +144,8 @@ function buildPallete(mode, correctRGB)
         {
             opts[i].style.backgroundColor = 'transparent';
         }
-    } else if (mode === 'hard' || mode === 'legend') {
+    } else if (mode === 'hard' || mode === 'medium') {
         right = (Math.floor(Math.random()*100))%6;
-        if(mode === 'medium'){
-            const uncommon = Math.floor(Math.random()*10)%6;
-            for(let i = 0; i < 6; i++)
-            {
-                if(i === uncommon)
-                {
-                    nrgb[i] = correctRGB[i];
-                }
-            }
-        }
         for(let i = 0; i < 6; i++)
         {
             if(i === right)
@@ -223,7 +223,7 @@ legendButton.addEventListener("click", () => {
 for(let i = 0; i < 6; i++) // final checking logic
 {
     opts[i].addEventListener("click", () => {
-        if( ( (umode === 'easy' || umode === 'medium') && i < 3) || ( umode === 'hard' || umode === 'legend' ) ){
+        if( ( (umode === 'easy' || umode === 'legend') && i < 3) || ( umode === 'hard' || umode === 'medium' ) ){
             if(i === right){
                 tryagain.innerHTML = 'Correct!';
                 normalise(RGBC, umode);
