@@ -112,16 +112,6 @@ function buildPallete(mode, correctRGB)
         right = (Math.floor(Math.random()*100))%3;
         for(let i = 0; i < 3; i++)
         {
-            if(mode === 'legend'){
-                const uncommon = Math.floor(Math.random()*10)%3;
-                for(let i = 0; i < 3; i++)
-                {
-                    if(i === uncommon)
-                    {
-                        nrgb[i] = correctRGB[i];
-                    }
-                }
-            }
             if(i === right)
             {
                 opts[i].style.backgroundColor = `rgb(${correctRGB[0]}, ${correctRGB[1]}, ${correctRGB[2]})`;
@@ -131,7 +121,7 @@ function buildPallete(mode, correctRGB)
                     const common = Math.floor(Math.random()*10)%3;
                     for(let i = 0; i < 3; i++)
                     {
-                        if(i !== common)
+                        if(i === common)
                         {
                             nrgb[i] = correctRGB[i];
                         }
@@ -153,6 +143,16 @@ function buildPallete(mode, correctRGB)
                 opts[i].style.backgroundColor = `rgb(${correctRGB[0]}, ${correctRGB[1]}, ${correctRGB[2]})`;
             } else {
                 let nrgb = new_rgb();
+                if(mode === 'medium'){
+                    const common = Math.floor(Math.random()*10)%3;
+                    for(let i = 0; i < 3; i++)
+                    {
+                        if(i === common)
+                        {
+                            nrgb[i] = correctRGB[i];
+                        }
+                    }
+                }
                 opts[i].style.backgroundColor = `rgb(${nrgb[0]}, ${nrgb[1]}, ${nrgb[2]})`;
             }
         }                                                       
