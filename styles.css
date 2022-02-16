@@ -1,8 +1,3 @@
-#opt-1{
-    position: absolute;
-    right: 100;
-}
-
 #rgb{
     color: white
 }
@@ -39,6 +34,7 @@
     border: 0;
     color: antiquewhite;
     cursor: pointer;
+    transition-duration: 0.2s;
 }
 
 .btn:active{
@@ -53,16 +49,27 @@
     top: 20px;
     background-color: transparent;
     border-radius: 12px;
+    transition-duration: 50ms;
 }
 
 .option-btn:active{
     transform: translateY(5px);
 }
 
-.hard{
-    top:135px;
+.option-btn:after{
+    content: '';
+    display: block;
+    opacity: 0;
+    transition: all 90ms;
 }
 
-.option-btn-hard:active{
-    transform: translateY(4px);
+.option-btn:active:after{
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s;
+}
+
+.hard{
+    top:135px;
 }
