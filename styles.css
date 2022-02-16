@@ -49,7 +49,7 @@
     top: 20px;
     background-color: transparent;
     border-radius: 12px;
-    transition-duration: 50ms;
+    transition-duration: 100ms;
 }
 
 .option-btn:active{
@@ -60,7 +60,7 @@
     content: '';
     display: block;
     opacity: 0;
-    transition: all 90ms;
+    transition: all 110s;
 }
 
 .option-btn:active:after{
