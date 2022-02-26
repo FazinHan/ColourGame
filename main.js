@@ -8,9 +8,11 @@ const hardButton = document.getElementById("btn-hard");
 const legendButton = document.getElementById("btn-legend");
 const Canvas = document.getElementById("canvas");
 
+const MAX_TILES = 9;
+
 const opts = [];
 
-for(let i = 1; i <= 9; i++) // creating button instances for pallete
+for(let i = 1; i <= MAX_TILES; i++) // creating button instances for pallete
 {
     opts.push(document.getElementById(`opt-${i}`));
 }
@@ -111,12 +113,12 @@ function buildPallete(mode, correctRGB)
 {
     if(mode === 'easy' || mode === 'legend')
     {
-        const num = 3;
+        let num = 3;
         if(mode === 'legend')
         {
             num = 9;
         }
-        right = (Math.floor(Math.random()*100))%3;
+        right = (Math.floor(Math.random()*100))%num;
         for(let i = 0; i < num; i++)
         {
             if(i === right)
@@ -137,9 +139,11 @@ function buildPallete(mode, correctRGB)
                 opts[i].style.backgroundColor = `rgb(${nrgb[0]}, ${nrgb[1]}, ${nrgb[2]})`;
             }
         }
-        for(let i = 3; i < 6; i++)
-        {
-            opts[i].style.backgroundColor = 'transparent';
+        if(mode !== 'legend'){
+            for(let i = 3; i < MAX_TILES; i++)
+            {
+                opts[i].style.backgroundColor = 'transparent';
+            }
         }
     } else if (mode === 'hard' || mode === 'medium') {
         right = (Math.floor(Math.random()*100))%6;
@@ -162,7 +166,11 @@ function buildPallete(mode, correctRGB)
                 }
                 opts[i].style.backgroundColor = `rgb(${nrgb[0]}, ${nrgb[1]}, ${nrgb[2]})`;
             }
-        }                                                       
+        }
+        for(let i = 6; i < MAX_TILES; i++)
+        {
+            opts[i].style.backgroundColor = 'transparent';
+        }                                              
     }
 }
 
@@ -234,10 +242,10 @@ legendButton.addEventListener("click", () => {
     game_mode_legend();
 })
 
-for(let i = 0; i < 6; i++) // final checking logic
+for(let i = 0; i < MAX_TILES; i++) // final checking logic
 {
     opts[i].addEventListener("click", () => {
-        if( ( (umode === 'easy' || umode === 'legend') && i < 3) || ( umode === 'hard' || umode === 'medium' ) ){
+        if( (umode === 'easy' && i < 3) || ((umode === 'hard' || umode === 'medium' ) && i < 6) || umode === 'legend' ){
             if(i === right){
                 tryagain.innerHTML = 'Correct!';
                 normalise(RGBC, umode);
