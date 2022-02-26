@@ -217,7 +217,7 @@ resetButton.addEventListener("click", () => {
 
     tryagain.innerHTML = '';
 
-    header.style.backgroundColor = 'rgb(31, 94, 94)'; // reset banner
+    header.style.backgroundColor = 'rgb(55,172,87)'; // reset banner
 
     resetButton.innerHTML = 'Reset Colours';
 
