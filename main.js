@@ -20,7 +20,7 @@ for(let i = 1; i <= MAX_TILES; i++) // creating button instances for pallete
 const topLeftx = document.documentElement.clientWidth/2.5;
 const topLefty = 20;
 const boxSize = 100;
-const space = 120;
+const space = 116;// - 4;
 let right;
 
 const new_rgb = () => {
