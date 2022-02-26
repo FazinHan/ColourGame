@@ -10,7 +10,7 @@ const Canvas = document.getElementById("canvas");
 
 const opts = [];
 
-for(let i = 1; i <= 6; i++) // creating button instances for pallete
+for(let i = 1; i <= 9; i++) // creating button instances for pallete
 {
     opts.push(document.getElementById(`opt-${i}`));
 }
@@ -93,11 +93,13 @@ function normalise(colour, mode) // when called, makes everything the colour
     
     header.style.backgroundColor = `rgb(${colour[0]},${colour[1]},${colour[2]})`;
 
-    if(mode === 'easy' || mode === 'legend')
+    if(mode === 'easy')// || mode === 'legend')
     {
         count = 3;
     } else if (mode === 'hard' || mode === 'medium') {
         count = 6;
+    } else if (mode === 'legend') {
+        count = 9;
     }
     for(let i = 0; i < count; i++)
     {
@@ -109,8 +111,13 @@ function buildPallete(mode, correctRGB)
 {
     if(mode === 'easy' || mode === 'legend')
     {
+        const num = 3;
+        if(mode === 'legend')
+        {
+            num = 9;
+        }
         right = (Math.floor(Math.random()*100))%3;
-        for(let i = 0; i < 3; i++)
+        for(let i = 0; i < num; i++)
         {
             if(i === right)
             {
@@ -170,6 +177,13 @@ for(let i = 3; i < 6; i++)
 {
     const but = opts[i];
     but.style.left = `${topLeftx + (i - 4 + .5) * (space) - 2}px`;
+    but.style.height = `${boxSize + 4}px`;
+    but.style.width = `${boxSize + 4}px`;
+}
+for(let i = 6; i < 9; i++)
+{
+    const but = opts[i];
+    but.style.left = `${topLeftx + (i - 7 + .5) * (space) - 2}px`;
     but.style.height = `${boxSize + 4}px`;
     but.style.width = `${boxSize + 4}px`;
 }
