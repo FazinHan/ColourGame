@@ -8,9 +8,11 @@ const hardButton = document.getElementById("btn-hard");
 const legendButton = document.getElementById("btn-legend");
 const Canvas = document.getElementById("canvas");
 
+const MAX_TILES = 9;
+
 const opts = [];
 
-for(let i = 1; i <= 6; i++) // creating button instances for pallete
+for(let i = 1; i <= MAX_TILES; i++) // creating button instances for pallete
 {
     opts.push(document.getElementById(`opt-${i}`));
 }
@@ -18,7 +20,7 @@ for(let i = 1; i <= 6; i++) // creating button instances for pallete
 const topLeftx = document.documentElement.clientWidth/2.5;
 const topLefty = 20;
 const boxSize = 100;
-const space = 120;
+const space = 116;// - 4;
 let right;
 
 const new_rgb = () => {
@@ -93,11 +95,13 @@ function normalise(colour, mode) // when called, makes everything the colour
     
     header.style.backgroundColor = `rgb(${colour[0]},${colour[1]},${colour[2]})`;
 
-    if(mode === 'easy' || mode === 'legend')
+    if(mode === 'easy')// || mode === 'legend')
     {
         count = 3;
     } else if (mode === 'hard' || mode === 'medium') {
         count = 6;
+    } else if (mode === 'legend') {
+        count = 9;
     }
     for(let i = 0; i < count; i++)
     {
@@ -109,8 +113,13 @@ function buildPallete(mode, correctRGB)
 {
     if(mode === 'easy' || mode === 'legend')
     {
-        right = (Math.floor(Math.random()*100))%3;
-        for(let i = 0; i < 3; i++)
+        let num = 3;
+        if(mode === 'legend')
+        {
+            num = 9;
+        }
+        right = (Math.floor(Math.random()*100))%num;
+        for(let i = 0; i < num; i++)
         {
             if(i === right)
             {
@@ -130,9 +139,11 @@ function buildPallete(mode, correctRGB)
                 opts[i].style.backgroundColor = `rgb(${nrgb[0]}, ${nrgb[1]}, ${nrgb[2]})`;
             }
         }
-        for(let i = 3; i < 6; i++)
-        {
-            opts[i].style.backgroundColor = 'transparent';
+        if(mode !== 'legend'){
+            for(let i = 3; i < MAX_TILES; i++)
+            {
+                opts[i].style.backgroundColor = 'transparent';
+            }
         }
     } else if (mode === 'hard' || mode === 'medium') {
         right = (Math.floor(Math.random()*100))%6;
@@ -155,7 +166,11 @@ function buildPallete(mode, correctRGB)
                 }
                 opts[i].style.backgroundColor = `rgb(${nrgb[0]}, ${nrgb[1]}, ${nrgb[2]})`;
             }
-        }                                                       
+        }
+        for(let i = 6; i < MAX_TILES; i++)
+        {
+            opts[i].style.backgroundColor = 'transparent';
+        }                                              
     }
 }
 
@@ -170,6 +185,13 @@ for(let i = 3; i < 6; i++)
 {
     const but = opts[i];
     but.style.left = `${topLeftx + (i - 4 + .5) * (space) - 2}px`;
+    but.style.height = `${boxSize + 4}px`;
+    but.style.width = `${boxSize + 4}px`;
+}
+for(let i = 6; i < 9; i++)
+{
+    const but = opts[i];
+    but.style.left = `${topLeftx + (i - 7 + .5) * (space) - 2}px`;
     but.style.height = `${boxSize + 4}px`;
     but.style.width = `${boxSize + 4}px`;
 }
@@ -220,10 +242,10 @@ legendButton.addEventListener("click", () => {
     game_mode_legend();
 })
 
-for(let i = 0; i < 6; i++) // final checking logic
+for(let i = 0; i < MAX_TILES; i++) // final checking logic
 {
     opts[i].addEventListener("click", () => {
-        if( ( (umode === 'easy' || umode === 'legend') && i < 3) || ( umode === 'hard' || umode === 'medium' ) ){
+        if( (umode === 'easy' && i < 3) || ((umode === 'hard' || umode === 'medium' ) && i < 6) || umode === 'legend' ){
             if(i === right){
                 tryagain.innerHTML = 'Correct!';
                 normalise(RGBC, umode);
